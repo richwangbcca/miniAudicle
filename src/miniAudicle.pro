@@ -63,7 +63,7 @@ QMAKE_CFLAGS += -I$$shell_path($$_PRO_FILE_PWD_)/qt
 #-------------------------------------------------
 macx {
 # specific architecture(s); use x86_64 and arm64 for universal binary
-QMAKE_APPLE_DEVICE_ARCHS = x86_64 arm64
+QMAKE_APPLE_DEVICE_ARCHS = x86_64
 
 # set application bundle identifier prefix
 QMAKE_TARGET_BUNDLE_PREFIX = edu.stanford.chuck
@@ -99,8 +99,8 @@ QSCINTILLA_LINKING = static
 equals( QSCINTILLA_LINKING, "static" ) { # use static linking
     # provide header search path for Qsci/ headers
     QMAKE_CXXFLAGS += -I$$[QT_INSTALL_HEADERS]
-    # expect qscintilla2_qt6(d).a in src/qt/lib/
-    QMAKE_LFLAGS += -L$${_PRO_FILE_PWD_}/qt/lib
+    # expect qscintilla2_qt6(d).a in src/qt/lib/; fall back to system Qt libs (e.g. Homebrew dylib)
+    QMAKE_LFLAGS += -L$${_PRO_FILE_PWD_}/qt/lib -L$$[QT_INSTALL_LIBS]
     # which version of the library: debug or release
     CONFIG(debug, debug|release) { QMAKE_LIBS += -lqscintilla2_qt6d }
     else { QMAKE_LIBS += -lqscintilla2_qt6 }

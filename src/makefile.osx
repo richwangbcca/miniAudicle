@@ -32,22 +32,27 @@ CC=clang
 CXX=clang++
 endif
 
-BUNDLE_FRAMEWORKS=PSMTabBarControl
+BUNDLE_FRAMEWORKS=PSMTabBarControl Scintilla
 BUNDLE_FRAMEWORKS_DIR=$(OSX_DIR)/Frameworks
 
 INCLUDES=-I$(CHUCK_SRC_DIR)/core -I$(CHUCK_SRC_DIR)/host -I$(CHUCK_SRC_DIR)/host/RtAudio \
-    -I$(OSX_DIR) -I$(OSX_DIR)/UliKit -I. -F$(BUNDLE_FRAMEWORKS_DIR)
+    -I$(OSX_DIR) -I$(OSX_DIR)/UliKit -I. -F$(BUNDLE_FRAMEWORKS_DIR) \
+    -I$(OSX_DIR)/external/scintilla/include \
+    -I$(OSX_DIR)/external/scintilla/cocoa \
+    -I$(OSX_DIR)/external/lexilla/include \
+    -I$(OSX_DIR)/external/lexilla/lexlib
 CFLAGS+=-D__MACOSX_CORE__ -c -DGCC_FAST_OBJC_DISPATCH $(INCLUDES) \
     -mmacosx-version-min=10.9 $(ISYSROOT) -DENV_MA_VERSION="\"$(VERSION)\""
+CXXSTD=-std=c++17
 
-FRAMEWORKS=Cocoa CoreAudio CoreMIDI CoreFoundation Carbon IOKit Security AVFoundation
+FRAMEWORKS=Cocoa CoreAudio CoreMIDI CoreFoundation Carbon IOKit Security AVFoundation QuartzCore
 # linker assumes CXX -- e.g., g++
 LIBS=$(addprefix -framework ,$(FRAMEWORKS)) \
     $(LINK_EXTRAS) -lm
 # if linking using CC -- e.g., gcc -- add -lc++
 # LIBS+= -lc++
 LDFLAGS=$(LIBS) -mmacosx-version-min=10.9 $(ISYSROOT)
-LDFLAGS_MA=-F$(BUNDLE_FRAMEWORKS_DIR) -framework PSMTabBarControl -rpath "@executable_path/../Frameworks"
+LDFLAGS_MA=-F$(BUNDLE_FRAMEWORKS_DIR) -framework PSMTabBarControl -framework Scintilla -rpath "@executable_path/../Frameworks"
 
 ARCHOPTS=$(addprefix -arch ,$(ARCHS))
 
@@ -175,6 +180,21 @@ CHUCK_BIN_CXXOBJS=$(CHUCK_BIN_CXXSRCS:.cpp=.o)
 CHUCK_BIN_OBJS=$(CHUCK_OBJS) $(CHUCK_BIN_CXXOBJS)
 
 CSRCS+=
+LEXILLA_DIR=$(OSX_DIR)/external/lexilla
+LEXILLA_CXXSRCS= \
+    $(LEXILLA_DIR)/lexlib/Accessor.cxx \
+    $(LEXILLA_DIR)/lexlib/CharacterCategory.cxx \
+    $(LEXILLA_DIR)/lexlib/CharacterSet.cxx \
+    $(LEXILLA_DIR)/lexlib/DefaultLexer.cxx \
+    $(LEXILLA_DIR)/lexlib/InList.cxx \
+    $(LEXILLA_DIR)/lexlib/LexAccessor.cxx \
+    $(LEXILLA_DIR)/lexlib/LexerBase.cxx \
+    $(LEXILLA_DIR)/lexlib/LexerModule.cxx \
+    $(LEXILLA_DIR)/lexlib/LexerSimple.cxx \
+    $(LEXILLA_DIR)/lexlib/PropSetSimple.cxx \
+    $(LEXILLA_DIR)/lexlib/StyleContext.cxx \
+    $(LEXILLA_DIR)/lexlib/WordList.cxx \
+    $(LEXILLA_DIR)/lexers/LexCPP.cxx
 CXXSRCS+= miniAudicle.cpp \
     miniAudicle_shell.cpp \
     miniAudicle_import.cpp \
@@ -201,6 +221,7 @@ OBJCXXSRCS+= $(OSX_DIR)/miniAudicleController.mm \
 	$(OSX_DIR)/mASyntaxHighlighter.mm \
 	$(OSX_DIR)/mAChuginManager.mm \
 	$(OSX_DIR)/mADocumentViewController.mm \
+	$(OSX_DIR)/mAScintillaView.mm \
 	$(OSX_DIR)/mAMultiDocWindowController.mm \
 	$(OSX_DIR)/mARecordSessionController.mm \
 	$(OSX_DIR)/NSString+STLString.mm \
@@ -211,7 +232,8 @@ COBJS=$(CSRCS:.c=.o)
 CXXOBJS=$(CXXSRCS:.cpp=.o)
 OBJCOBJS=$(OBJCSRCS:.m=.o)
 OBJCXXOBJS=$(OBJCXXSRCS:.mm=.o)
-OBJS=$(COBJS) $(CXXOBJS) $(OBJCOBJS) $(OBJCXXOBJS)
+LEXILLA_CXXOBJS=$(LEXILLA_CXXSRCS:.cxx=.o)
+OBJS=$(COBJS) $(CXXOBJS) $(OBJCOBJS) $(OBJCXXOBJS) $(LEXILLA_CXXOBJS)
 
 # example files
 CK_EXAMPLES_DIR=chuck/examples
@@ -278,7 +300,7 @@ $(INFO_PLIST_IN_BUNDLE): $(INFO_PLIST) version.mk
 
 $(BUNDLE_FRAMEWORKS_IN_BUNDLE): $(BIN_DIR)/miniAudicle.app/Contents/Frameworks/%: $(OSX_DIR)/Frameworks/%
 	mkdir -p $(BIN_DIR)/miniAudicle.app/Contents/Frameworks
-	cp -a $< $@
+	cp -RL $< $@
 	touch $(BIN_DIR)/miniAudicle.app
 
 $(CHUCK_SCRIPTS_IN_BUNDLE): $(addprefix $(CHUCK_SCRIPTS_DIR)/,$(CHUCK_SCRIPTS))
@@ -310,11 +332,11 @@ $(CHUCK_COBJS): %.o: %.c
 	@$(CC) -MM $(CFLAGSDEPEND) $< > $*.d
 
 $(CHUCK_CXXOBJS): %.o: %.cpp
-	$(CXX) $(CFLAGS) $(ARCHOPTS) -c $< -o $@
+	$(CXX) $(CFLAGS) $(CXXSTD) $(ARCHOPTS) -c $< -o $@
 	@$(CXX) -MM $(CFLAGSDEPEND) $< > $*.d
 
 $(CHUCK_BIN_CXXOBJS): %.o: %.cpp
-	$(CXX) $(CFLAGS) $(ARCHOPTS) -c $< -o $@
+	$(CXX) $(CFLAGS) $(CXXSTD) $(ARCHOPTS) -c $< -o $@
 	@$(CXX) -MM $(CFLAGSDEPEND) $< > $*.d
 
 $(LO_COBJS): %.o: %.c
@@ -347,7 +369,11 @@ $(COBJS): %.o: %.c
 	@$(CC) -MM $(CFLAGSDEPEND) $< > $*.d
 
 $(CXXOBJS): %.o: %.cpp
-	$(CXX) $(CFLAGS) $(ARCHOPTS) -c $< -o $@
+	$(CXX) $(CFLAGS) $(CXXSTD) $(ARCHOPTS) -c $< -o $@
+	@$(CXX) -MM $(CFLAGSDEPEND) $< > $*.d
+
+$(LEXILLA_CXXOBJS): %.o: %.cxx
+	$(CXX) $(CFLAGS) $(CXXSTD) $(ARCHOPTS) -c $< -o $@
 	@$(CXX) -MM $(CFLAGSDEPEND) $< > $*.d
 
 $(OBJCOBJS): %.o: %.m
@@ -355,7 +381,7 @@ $(OBJCOBJS): %.o: %.m
 	@$(CC) -MM $(CFLAGSDEPEND) $< > $*.d
 
 $(OBJCXXOBJS): %.o: %.mm
-	$(CXX) $(CFLAGS) $(ARCHOPTS) -c $< -o $@
+	$(CXX) $(CFLAGS) $(CXXSTD) $(ARCHOPTS) -c $< -o $@
 	@$(CXX) -MM $(CFLAGSDEPEND) $< > $*.d
 
 

@@ -68,6 +68,7 @@
 		0913D8291654CBC000210436 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0913D8281654CBC000210436 /* QuartzCore.framework */; };
 		091433001738C16A00666F0D /* mAMultiDocWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 091432FF1738C16A00666F0D /* mAMultiDocWindowController.mm */; };
 		091433031738C17C00666F0D /* mADocumentViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 091433021738C17C00666F0D /* mADocumentViewController.mm */; };
+		7034A0012F57BD1500C51A1F /* mAScintillaView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7034A0022F57BD1500C51A1F /* mAScintillaView.mm */; };
 		0916F981173AF0D20055956C /* PSMTabBarControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0916F980173AF0D20055956C /* PSMTabBarControl.framework */; };
 		09216C0A134ED4A900145064 /* MultitouchSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09216C09134ED4A900145064 /* MultitouchSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		09297A160B4DED60005C3B7A /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 092979FB0B4DED60005C3B7A /* IOBluetooth.framework */; };
@@ -317,6 +318,9 @@
 		4D3D4C921A5E37DB00B6A06B /* dsym_upload.sh in Resources */ = {isa = PBXBuildFile; fileRef = 4D3D4C901A5E37DB00B6A06B /* dsym_upload.sh */; };
 		4D3D4C931A5E37DB00B6A06B /* libCrittercism_v5_0_7.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3D4C911A5E37DB00B6A06B /* libCrittercism_v5_0_7.a */; };
 		4D3D4C981A5E3A4400B6A06B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3D4C971A5E3A4400B6A06B /* SystemConfiguration.framework */; };
+		7033C7382F57BD1500C51A1F /* Scintilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7033C7372F57BD1500C51A1F /* Scintilla.framework */; };
+		7033C7392F57BD1500C51A1F /* Scintilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7033C7372F57BD1500C51A1F /* Scintilla.framework */; };
+		7033C73B2F57BE4500C51A1F /* Scintilla.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7033C7372F57BD1500C51A1F /* Scintilla.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		864617FD29F381000018DC65 /* ulib_doc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 864617FB29F381000018DC65 /* ulib_doc.cpp */; };
 		864617FE29F381000018DC65 /* ulib_doc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 864617FB29F381000018DC65 /* ulib_doc.cpp */; };
 		864617FF29F381000018DC65 /* ulib_doc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 864617FB29F381000018DC65 /* ulib_doc.cpp */; };
@@ -329,6 +333,19 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		D5A682F81E26B81D009A460F /* NSPanel+ButtonTag.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A682F51E26A130009A460F /* NSPanel+ButtonTag.m */; };
+		7034B0012F57BD1500C51A1F /* Accessor.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 7034B0022F57BD1500C51A1F /* Accessor.cxx */; };
+		7034B0032F57BD1500C51A1F /* CharacterCategory.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 7034B0042F57BD1500C51A1F /* CharacterCategory.cxx */; };
+		7034B0052F57BD1500C51A1F /* CharacterSet.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 7034B0062F57BD1500C51A1F /* CharacterSet.cxx */; };
+		7034B0072F57BD1500C51A1F /* DefaultLexer.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 7034B0082F57BD1500C51A1F /* DefaultLexer.cxx */; };
+		7034B0092F57BD1500C51A1F /* InList.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 7034B00A2F57BD1500C51A1F /* InList.cxx */; };
+		7034B00B2F57BD1500C51A1F /* LexAccessor.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 7034B00C2F57BD1500C51A1F /* LexAccessor.cxx */; };
+		7034B00D2F57BD1500C51A1F /* LexerBase.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 7034B00E2F57BD1500C51A1F /* LexerBase.cxx */; };
+		7034B00F2F57BD1500C51A1F /* LexerModule.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 7034B0102F57BD1500C51A1F /* LexerModule.cxx */; };
+		7034B0112F57BD1500C51A1F /* LexerSimple.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 7034B0122F57BD1500C51A1F /* LexerSimple.cxx */; };
+		7034B0132F57BD1500C51A1F /* PropSetSimple.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 7034B0142F57BD1500C51A1F /* PropSetSimple.cxx */; };
+		7034B0152F57BD1500C51A1F /* StyleContext.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 7034B0162F57BD1500C51A1F /* StyleContext.cxx */; };
+		7034B0172F57BD1500C51A1F /* WordList.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 7034B0182F57BD1500C51A1F /* WordList.cxx */; };
+		7034B0192F57BD1500C51A1F /* LexCPP.cxx in Sources */ = {isa = PBXBuildFile; fileRef = 7034B01A2F57BD1500C51A1F /* LexCPP.cxx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -374,6 +391,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				7033C73B2F57BE4500C51A1F /* Scintilla.framework in CopyFiles */,
 				0907BB06173D04770065B860 /* PSMTabBarControl.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -789,6 +807,9 @@
 		4D3D4C911A5E37DB00B6A06B /* libCrittercism_v5_0_7.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCrittercism_v5_0_7.a; sourceTree = "<group>"; };
 		4D3D4C941A5E392800B6A06B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4D3D4C971A5E3A4400B6A06B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		7033C7372F57BD1500C51A1F /* Scintilla.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Scintilla.framework; path = macosx/Frameworks/Scintilla.framework; sourceTree = SOURCE_ROOT; };
+		7034A0022F57BD1500C51A1F /* mAScintillaView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = mAScintillaView.mm; path = macosx/mAScintillaView.mm; sourceTree = SOURCE_ROOT; };
+		7034A0032F57BD1500C51A1F /* mAScintillaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mAScintillaView.h; path = macosx/mAScintillaView.h; sourceTree = SOURCE_ROOT; };
 		864617FB29F381000018DC65 /* ulib_doc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ulib_doc.cpp; sourceTree = "<group>"; };
 		864617FC29F381000018DC65 /* ulib_doc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ulib_doc.h; sourceTree = "<group>"; };
 		8689D7922A4C56F5003BF32E /* util_platforms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util_platforms.h; sourceTree = "<group>"; };
@@ -798,6 +819,19 @@
 		8D1107320486CEB800E47090 /* miniAudicle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = miniAudicle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5A682F51E26A130009A460F /* NSPanel+ButtonTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSPanel+ButtonTag.m"; path = "macosx/NSPanel+ButtonTag.m"; sourceTree = "<group>"; usesTabs = 0; };
 		D5A682F71E26A192009A460F /* NSPanel+ButtonTag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSPanel+ButtonTag.h"; path = "macosx/NSPanel+ButtonTag.h"; sourceTree = "<group>"; usesTabs = 0; };
+		7034B0022F57BD1500C51A1F /* Accessor.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Accessor.cxx; path = macosx/external/lexilla/lexlib/Accessor.cxx; sourceTree = SOURCE_ROOT; };
+		7034B0042F57BD1500C51A1F /* CharacterCategory.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CharacterCategory.cxx; path = macosx/external/lexilla/lexlib/CharacterCategory.cxx; sourceTree = SOURCE_ROOT; };
+		7034B0062F57BD1500C51A1F /* CharacterSet.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CharacterSet.cxx; path = macosx/external/lexilla/lexlib/CharacterSet.cxx; sourceTree = SOURCE_ROOT; };
+		7034B0082F57BD1500C51A1F /* DefaultLexer.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DefaultLexer.cxx; path = macosx/external/lexilla/lexlib/DefaultLexer.cxx; sourceTree = SOURCE_ROOT; };
+		7034B00A2F57BD1500C51A1F /* InList.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InList.cxx; path = macosx/external/lexilla/lexlib/InList.cxx; sourceTree = SOURCE_ROOT; };
+		7034B00C2F57BD1500C51A1F /* LexAccessor.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LexAccessor.cxx; path = macosx/external/lexilla/lexlib/LexAccessor.cxx; sourceTree = SOURCE_ROOT; };
+		7034B00E2F57BD1500C51A1F /* LexerBase.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LexerBase.cxx; path = macosx/external/lexilla/lexlib/LexerBase.cxx; sourceTree = SOURCE_ROOT; };
+		7034B0102F57BD1500C51A1F /* LexerModule.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LexerModule.cxx; path = macosx/external/lexilla/lexlib/LexerModule.cxx; sourceTree = SOURCE_ROOT; };
+		7034B0122F57BD1500C51A1F /* LexerSimple.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LexerSimple.cxx; path = macosx/external/lexilla/lexlib/LexerSimple.cxx; sourceTree = SOURCE_ROOT; };
+		7034B0142F57BD1500C51A1F /* PropSetSimple.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PropSetSimple.cxx; path = macosx/external/lexilla/lexlib/PropSetSimple.cxx; sourceTree = SOURCE_ROOT; };
+		7034B0162F57BD1500C51A1F /* StyleContext.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StyleContext.cxx; path = macosx/external/lexilla/lexlib/StyleContext.cxx; sourceTree = SOURCE_ROOT; };
+		7034B0182F57BD1500C51A1F /* WordList.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WordList.cxx; path = macosx/external/lexilla/lexlib/WordList.cxx; sourceTree = SOURCE_ROOT; };
+		7034B01A2F57BD1500C51A1F /* LexCPP.cxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LexCPP.cxx; path = macosx/external/lexilla/lexers/LexCPP.cxx; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -807,6 +841,7 @@
 			files = (
 				4D3D4C981A5E3A4400B6A06B /* SystemConfiguration.framework in Frameworks */,
 				094B5F6919C9E1E8004B9B5E /* CoreMotion.framework in Frameworks */,
+				7033C7382F57BD1500C51A1F /* Scintilla.framework in Frameworks */,
 				4D3D4C931A5E37DB00B6A06B /* libCrittercism_v5_0_7.a in Frameworks */,
 				09AEF9C719C475AC0081AE4B /* CoreImage.framework in Frameworks */,
 				09AC4E1A18EBC0C400B2561A /* QuartzCore.framework in Frameworks */,
@@ -847,6 +882,7 @@
 				099F2CFB26823CDA00123B7C /* AVFoundation.framework in Frameworks */,
 				09A40D860A9AC579007604EA /* Foundation.framework in Frameworks */,
 				09297A160B4DED60005C3B7A /* IOBluetooth.framework in Frameworks */,
+				7033C7392F57BD1500C51A1F /* Scintilla.framework in Frameworks */,
 				0916F981173AF0D20055956C /* PSMTabBarControl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -858,8 +894,11 @@
 			isa = PBXGroup;
 			children = (
 				09678632173F169E003AB462 /* UliKit */,
+				7034B01B2F57BD1500C51A1F /* lexilla */,
 				091433011738C17C00666F0D /* mADocumentViewController.h */,
 				091433021738C17C00666F0D /* mADocumentViewController.mm */,
+				7034A0032F57BD1500C51A1F /* mAScintillaView.h */,
+				7034A0022F57BD1500C51A1F /* mAScintillaView.mm */,
 				091432FE1738C16A00666F0D /* mAMultiDocWindowController.h */,
 				091432FF1738C16A00666F0D /* mAMultiDocWindowController.mm */,
 				09A40BB20A9A55EC007604EA /* miniAudicleDocument.h */,
@@ -1508,6 +1547,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7033C7372F57BD1500C51A1F /* Scintilla.framework */,
 				099F2CFA26823CDA00123B7C /* AVFoundation.framework */,
 				4D3D4C971A5E3A4400B6A06B /* SystemConfiguration.framework */,
 				4D3D4C941A5E392800B6A06B /* SystemConfiguration.framework */,
@@ -1546,6 +1586,43 @@
 				4D3D4C911A5E37DB00B6A06B /* libCrittercism_v5_0_7.a */,
 			);
 			path = Crittercism;
+			sourceTree = "<group>";
+		};
+
+		7034B01B2F57BD1500C51A1F /* lexilla */ = {
+			isa = PBXGroup;
+			children = (
+				7034B01C2F57BD1500C51A1F /* lexlib */,
+				7034B01D2F57BD1500C51A1F /* lexers */,
+			);
+			name = lexilla;
+			sourceTree = "<group>";
+		};
+		7034B01C2F57BD1500C51A1F /* lexlib */ = {
+			isa = PBXGroup;
+			children = (
+				7034B0022F57BD1500C51A1F /* Accessor.cxx */,
+				7034B0042F57BD1500C51A1F /* CharacterCategory.cxx */,
+				7034B0062F57BD1500C51A1F /* CharacterSet.cxx */,
+				7034B0082F57BD1500C51A1F /* DefaultLexer.cxx */,
+				7034B00A2F57BD1500C51A1F /* InList.cxx */,
+				7034B00C2F57BD1500C51A1F /* LexAccessor.cxx */,
+				7034B00E2F57BD1500C51A1F /* LexerBase.cxx */,
+				7034B0102F57BD1500C51A1F /* LexerModule.cxx */,
+				7034B0122F57BD1500C51A1F /* LexerSimple.cxx */,
+				7034B0142F57BD1500C51A1F /* PropSetSimple.cxx */,
+				7034B0162F57BD1500C51A1F /* StyleContext.cxx */,
+				7034B0182F57BD1500C51A1F /* WordList.cxx */,
+			);
+			name = lexlib;
+			sourceTree = "<group>";
+		};
+		7034B01D2F57BD1500C51A1F /* lexers */ = {
+			isa = PBXGroup;
+			children = (
+				7034B01A2F57BD1500C51A1F /* LexCPP.cxx */,
+			);
+			name = lexers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2014,6 +2091,20 @@
 				09056C351FCE8FF9004A2BD4 /* util_raw.c in Sources */,
 				091433001738C16A00666F0D /* mAMultiDocWindowController.mm in Sources */,
 				091433031738C17C00666F0D /* mADocumentViewController.mm in Sources */,
+				7034A0012F57BD1500C51A1F /* mAScintillaView.mm in Sources */,
+				7034B0012F57BD1500C51A1F /* Accessor.cxx in Sources */,
+				7034B0032F57BD1500C51A1F /* CharacterCategory.cxx in Sources */,
+				7034B0052F57BD1500C51A1F /* CharacterSet.cxx in Sources */,
+				7034B0072F57BD1500C51A1F /* DefaultLexer.cxx in Sources */,
+				7034B0092F57BD1500C51A1F /* InList.cxx in Sources */,
+				7034B00B2F57BD1500C51A1F /* LexAccessor.cxx in Sources */,
+				7034B00D2F57BD1500C51A1F /* LexerBase.cxx in Sources */,
+				7034B00F2F57BD1500C51A1F /* LexerModule.cxx in Sources */,
+				7034B0112F57BD1500C51A1F /* LexerSimple.cxx in Sources */,
+				7034B0132F57BD1500C51A1F /* PropSetSimple.cxx in Sources */,
+				7034B0152F57BD1500C51A1F /* StyleContext.cxx in Sources */,
+				7034B0172F57BD1500C51A1F /* WordList.cxx in Sources */,
+				7034B0192F57BD1500C51A1F /* LexCPP.cxx in Sources */,
 				09678637173F169E003AB462 /* UKFileWatcher.m in Sources */,
 				09056C371FCE8FF9004A2BD4 /* util_sndfile.c in Sources */,
 				09056C341FCE8FF9004A2BD4 /* util_opsc.cpp in Sources */,
@@ -2328,6 +2419,9 @@
 				HEADER_SEARCH_PATHS = (
 					chuck/src/core,
 					chuck/src/host,
+					"$(SRCROOT)/macosx/external/scintilla/include",
+					"$(SRCROOT)/macosx/external/lexilla/include",
+					"$(SRCROOT)/macosx/external/lexilla/lexlib",
 				);
 				INFOPLIST_FILE = macosx/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -2368,6 +2462,9 @@
 				HEADER_SEARCH_PATHS = (
 					chuck/src/core,
 					chuck/src/host,
+					"$(SRCROOT)/macosx/external/scintilla/include",
+					"$(SRCROOT)/macosx/external/lexilla/include",
+					"$(SRCROOT)/macosx/external/lexilla/lexlib",
 				);
 				INFOPLIST_FILE = macosx/Info.plist;
 				INSTALL_PATH = /Applications;
