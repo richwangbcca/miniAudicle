@@ -35,7 +35,7 @@
 #import "chuck_def.h"
 
 class miniAudicle;
-@class NumberedTextView;
+@class mAScintillaView;
 @class miniAudicleDocument;
 @class mAMultiDocWindowController;
 
@@ -44,7 +44,7 @@ class miniAudicle;
     miniAudicleDocument * _document;
     mAMultiDocWindowController * _windowController;
     
-    IBOutlet NumberedTextView * text_view;
+    IBOutlet mAScintillaView * text_view;
     IBOutlet NSTextField * status_text;
     IBOutlet NSTextField * argument_text;
     IBOutlet NSView * argument_view;

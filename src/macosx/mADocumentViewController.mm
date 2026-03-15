@@ -32,7 +32,8 @@
 //
 
 #import "mADocumentViewController.h"
-#import "NumberedTextView.h"
+//#import "NumberedTextView.h"
+#import "mAScintillaView.h"
 #import "miniAudicleDocument.h"
 #import "miniAudicleController.h"
 #import "NSString+STLString.h"
@@ -71,7 +72,7 @@ using namespace std;
 -(void)dealloc
 {
     [arguments release];
-    
+
     [[NSUserDefaultsController sharedUserDefaultsController]
      removeObserver:self
      forKeyPath:[@"values." stringByAppendingString:mAPreferencesShowStatusBar]];
@@ -81,6 +82,11 @@ using namespace std;
     [[NSUserDefaultsController sharedUserDefaultsController]
      removeObserver:self
      forKeyPath:[@"values." stringByAppendingString:mAPreferencesShowArguments]];
+    // not having this causes a message-to-freed-object crash when the controller is deallocated...
+    [[NSNotificationCenter defaultCenter]
+     removeObserver:self
+                name:NSUserDefaultsDidChangeNotification
+              object:nil];
 
     [super dealloc];
 }
@@ -94,14 +100,18 @@ using namespace std;
     _statusBarViewFrame = status_text.frame;
 
     // set text view syntax highlighter
-    [text_view setSyntaxHighlighter:[mac syntaxHighlighter] colorer:mac];
+    //[text_view setSyntaxHighlighter:[mac syntaxHighlighter] colorer:mac];
+    // if( self.document.data != nil )
+    // {
+    //     BOOL esi = [text_view smartIndentationEnabled];
+    //     [text_view setSmartIndentationEnabled:NO];
+    //     [[text_view textView] setString:self.document.data];
+    //     [[text_view textView] setSelectedRange:NSMakeRange(0, 0)];
+    //     [text_view setSmartIndentationEnabled:esi];
+    // }
     if( self.document.data != nil )
     {
-        BOOL esi = [text_view smartIndentationEnabled];
-        [text_view setSmartIndentationEnabled:NO];
-        [[text_view textView] setString:self.document.data];
-        [[text_view textView] setSelectedRange:NSMakeRange(0, 0)];
-        [text_view setSmartIndentationEnabled:esi];
+        text_view.content = self.document.data;
     }
     
     [[NSUserDefaultsController sharedUserDefaultsController]
@@ -119,12 +129,25 @@ using namespace std;
      forKeyPath:[@"values." stringByAppendingString:mAPreferencesShowArguments]
      options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
      context:nil];
+
+    // Keep font/color prefs live
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+        selector:@selector(_preferencesChanged:)
+            name:NSUserDefaultsDidChangeNotification
+          object:nil];
+    [text_view reloadUserDefaults];
 }
 
 
 - (void)activate
 {
-    [[self.view window] makeFirstResponder:[text_view textView]];
+    //[[self.view window] makeFirstResponder:[text_view textView]];
+    [[self.view window] makeFirstResponder:text_view.scintillaView];
+}
+
+- (void)_preferencesChanged:(NSNotification *)note {
+    [text_view reloadUserDefaults];
 }
 
 
@@ -136,21 +159,25 @@ using namespace std;
 
 - (BOOL)isEmpty
 {
-    return [[[text_view textView] textStorage] length] == 0;
+    //return [[[text_view textView] textStorage] length] == 0;
+    return text_view.content.length == 0;
 }
 
 - (NSString *)content
 {
-    return [[text_view textView] string];
+    //return [[text_view textView] string];
+    return text_view.content;
 }
 
 - (void)setContent:(NSString *)_content
 {
-    BOOL esi = [text_view smartIndentationEnabled];
-    [text_view setSmartIndentationEnabled:NO];
-    [[text_view textView] setString:_content];
-    [[text_view textView] setSelectedRange:NSMakeRange(0, 0)];
-    [text_view setSmartIndentationEnabled:esi];
+    // BOOL esi = [text_view smartIndentationEnabled];
+    // [text_view setSmartIndentationEnabled:NO];
+    // [[text_view textView] setString:_content];
+    // [[text_view textView] setSelectedRange:NSMakeRange(0, 0)];
+    // [text_view setSmartIndentationEnabled:esi];
+
+    text_view.content = _content;
 }
 
 - (void)handleArgumentText:(id)sender
@@ -180,15 +207,14 @@ using namespace std;
     t_CKUINT shred_id;
     string code_name = string( [[self.document displayName] stlString] );
     
-    string code = [[[text_view textView] string] stlString];
+    //string code = [[[text_view textView] string] stlString];
+    string code = [text_view.content stlString];
     
     vector< string > argv;
     NSEnumerator * args_enum = [arguments objectEnumerator];
     NSString * arg = nil;
     while( arg = [args_enum nextObject] )
         argv.push_back( [arg stlString] );
-    
-    [text_view setShowsErrorLine:NO];
     
     string filepath;
     if([self.document fileURL] && [[self.document fileURL] isFileURL])
@@ -202,42 +228,23 @@ using namespace std;
     if( otf_result == OTF_SUCCESS )
     {
         [status_text setStringValue:@""];
-        
-        if([self.windowController currentViewController] == self)
-            [[text_view textView] animateAdd];
-        [text_view setShowsErrorLine:NO];
     }
-    
+
     else if( otf_result == OTF_VM_TIMEOUT )
     {
         miniAudicleController * mac = [NSDocumentController sharedDocumentController];
         [mac setLockdown:YES];
     }
-    
+
     else if( otf_result == OTF_COMPILE_ERROR )
     {
-        t_CKINT error_line;
-        if( ma->get_last_result( docid, NULL, NULL, &error_line ) )
-        {
-            [text_view setShowsErrorLine:YES];
-            [text_view setErrorLine:(unsigned)error_line];
-        }
-        
-        if([self.windowController currentViewController] == self)
-            [[text_view textView] animateError];
-        
         [status_text setStringValue:[NSString stringWithUTF8String:result.c_str()]];
     }
-    
+
     else
     {
-        if([self.windowController currentViewController] == self)
-            [[text_view textView] animateError];
-        
         [status_text setStringValue:[NSString stringWithUTF8String:result.c_str()]];
     }
-    //miniAudicleController * mac = [NSDocumentController sharedDocumentController];
-    //[mac updateSyntaxHighlighting];
 }
 
 - (void)replace:(id)sender
@@ -246,7 +253,8 @@ using namespace std;
     
     string result;
     t_CKUINT shred_id;
-    string code = [[[text_view textView] string] stlString];
+    //string code = [[[text_view textView] string] stlString];
+    string code = [text_view.content stlString];
     string code_name = [[self.document displayName] stlString];
     
     vector< string > argv;
@@ -267,37 +275,21 @@ using namespace std;
     if( otf_result == OTF_SUCCESS )
     {
         [status_text setStringValue:@""];
-        
-        if([self.windowController currentViewController] == self)
-            [[text_view textView] animateReplace];
-        [text_view setShowsErrorLine:NO];
     }
-    
+
     else if( otf_result == OTF_VM_TIMEOUT )
     {
         miniAudicleController * mac = [NSDocumentController sharedDocumentController];
         [mac setLockdown:YES];
     }
-    
+
     else if( otf_result == OTF_COMPILE_ERROR )
     {
-        t_CKINT error_line;
-        if( ma->get_last_result( docid, NULL, NULL, &error_line ) )
-        {
-            [text_view setShowsErrorLine:YES];
-            [text_view setErrorLine:(unsigned)error_line];
-        }
-        
-        if([self.windowController currentViewController] == self)
-            [[text_view textView] animateError];
-        
         [status_text setStringValue:[NSString stringWithUTF8String:result.c_str()]];
     }
-    
+
     else
     {
-        if([self.windowController currentViewController] == self)
-            [[text_view textView] animateError];
         [status_text setStringValue:[NSString stringWithUTF8String:result.c_str()]];
     }
     
@@ -315,22 +307,16 @@ using namespace std;
     if( otf_result == OTF_SUCCESS )
     {
         [status_text setStringValue:@""];
-        
-        if([self.windowController currentViewController] == self)
-            [[text_view textView] animateRemove];
-        [text_view setShowsErrorLine:NO];
     }
-    
+
     else if( otf_result == OTF_VM_TIMEOUT )
     {
         miniAudicleController * mac = [NSDocumentController sharedDocumentController];
         [mac setLockdown:YES];
     }
-    
+
     else
     {
-        if([self.windowController currentViewController] == self)
-            [[text_view textView] animateError];
         [status_text setStringValue:[NSString stringWithUTF8String:result.c_str()]];
     }
 }
@@ -338,39 +324,21 @@ using namespace std;
 - (void)removeall:(id)sender
 {
     string result;
-    if( !ma->removeall( docid, result ) )
-    {
-        if([self.windowController currentViewController] == self)
-            [[text_view textView] animateRemoveAll];
-        [text_view setShowsErrorLine:NO];
-    }
-    
+    ma->removeall( docid, result );
     [status_text setStringValue:[NSString stringWithUTF8String:result.c_str()]];
 }
 
 - (void)removelast:(id)sender
 {
     string result;
-    if( !ma->removelast( docid, result ) )
-    {
-        if([self.windowController currentViewController] == self)
-            [[text_view textView] animateRemoveLast];
-        [text_view setShowsErrorLine:NO];
-    }
-    
+    ma->removelast( docid, result );
     [status_text setStringValue:[NSString stringWithUTF8String:result.c_str()]];
 }
 
 - (void)clearVM:(id)sender
 {
     string result;
-    if( !ma->clearvm( docid, result ) )
-    {
-        if([self.windowController currentViewController] == self)
-            [[text_view textView] animateRemoveAll];
-        [text_view setShowsErrorLine:NO];
-    }
-    
+    ma->clearvm( docid, result );
     [status_text setStringValue:[NSString stringWithUTF8String:result.c_str()]];
 }
 

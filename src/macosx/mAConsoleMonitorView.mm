@@ -1182,8 +1182,8 @@ mAConsoleMonitorViewRange operator- ( mAConsoleMonitorViewRange r1,
     
     NSRange range = [ts doubleClickAtIndex:character];
     
-    mAConsoleMonitorViewRange r = { { string_index, range.location }, 
-                                    { string_index, range.location + range.length } };
+    mAConsoleMonitorViewRange r = { { string_index, (unsigned int)range.location },
+                                    { string_index, (unsigned int)(range.location + range.length) } };
     
     return r;
 }
@@ -1196,8 +1196,8 @@ mAConsoleMonitorViewRange operator- ( mAConsoleMonitorViewRange r1,
     
     unsigned string_index = [[optimization_data objectAtIndex:line] stringIndex];
     
-    mAConsoleMonitorViewRange r = { string_index, 0, string_index, 
-        [[[strings objectAtIndex:string_index] string] length] };
+    mAConsoleMonitorViewRange r = { string_index, 0, string_index,
+        (unsigned int)[[[strings objectAtIndex:string_index] string] length] };
     
     return r;
 }
