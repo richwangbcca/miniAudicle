@@ -76,6 +76,7 @@ mADocumentView::mADocumentView(QWidget *parent, std::string _title, QFile * file
     ui->textEdit->setLexer(lexer);
 
     ui->textEdit->setBraceMatching(QsciScintilla::SloppyBraceMatch);
+    ui->textEdit->setFolding(QsciScintilla::BoxedTreeFoldStyle);
     
 //    m_indicator = ui->textEdit->indicatorDefine(QsciScintilla::RoundBoxIndicator);
 //    ui->textEdit->setIndicatorDrawUnder(true, m_indicator);
