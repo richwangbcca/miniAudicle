@@ -213,7 +213,6 @@ OBJCXXSRCS+= $(OSX_DIR)/miniAudicleController.mm \
 	$(OSX_DIR)/miniAudicleConsoleMonitor.mm \
 	$(OSX_DIR)/miniAudicleShellController.mm  \
 	$(OSX_DIR)/mAConsoleMonitorView.mm \
-	$(OSX_DIR)/NumberedTextView.mm \
 	$(OSX_DIR)/miniAudicleShellTextView.mm \
 	$(OSX_DIR)/miniAudicle_ui_elements.mm \
 	$(OSX_DIR)/miniAudiclePreferencesController.mm \

@@ -1,7 +1,6 @@
 #import "mAScintillaView.h"
 #import "Scintilla.h"
 #import "SciLexer.h"
-#import "mASyntaxHighlighter.h"
 
 #include "ILexer.h"
 #include "LexerModule.h"

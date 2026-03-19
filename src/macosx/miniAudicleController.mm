@@ -102,24 +102,6 @@ NSString * const mAChuginExtension = @"chug";
         
         _windowControllers = [NSMutableArray new];
         
-        // initialize syntax highlighting
-        syntax_highlighter = [[IDEKit_LexParser alloc] init];
-        
-        for(NSString * keyword in [mASyntaxHighlighting keywords])
-            [syntax_highlighter addKeyword:keyword color:IDEKit_kLangColor_Keywords lexID:0];
-                
-        [syntax_highlighter addStringStart: @"\"" end: @"\""];
-        [syntax_highlighter addCommentStart: @"/*" end: @"*/"];
-        [syntax_highlighter addSingleComment: @"//"];        
-        [syntax_highlighter addSingleComment: @"<--"];        
-        
-        [syntax_highlighter setIdentifierChars:[NSCharacterSet characterSetWithCharactersInString:@"_@"]];
-        
-        for(id class_name in [mASyntaxHighlighting defaultClasses])
-            [syntax_highlighter addKeyword:class_name color:IDEKit_kLangColor_Classes lexID:0];
-        for(id ugen_name in [mASyntaxHighlighting defaultUGens])
-            [syntax_highlighter addKeyword:ugen_name color:IDEKit_kLangColor_OtherSymbol1 lexID:0];
-        
         // detach one empty NSThread to put Cocoa into multithreaded mode
         [NSThread detachNewThreadSelector:@selector(nop:) 
                                  toTarget:self withObject:nil];
@@ -142,7 +124,6 @@ NSString * const mAChuginExtension = @"chug";
         delete ma;
     }
     
-    [syntax_highlighter release];
     [class_names release];
     [madv autorelease];
     m_recordSessionController.controller = nil;
@@ -255,7 +236,7 @@ NSString * const mAChuginExtension = @"chug";
 
 // We want a custom subclass of NSDocumentController to handle document closure.
 // The object is instantiated in Window.xib and becomes the application-global document
-// controller, overriding NSDocumentControllerÔs default instance.
+// controller, overriding NSDocumentControllerï¿½s default instance.
 
 //- (void)document:(NSDocument *)doc shouldClose:(BOOL)shouldClose contextInfo:(void  *)contextInfo
 //{
@@ -500,17 +481,8 @@ NSString * const mAChuginExtension = @"chug";
 }
 
 //-----------------------------------------------------------------------------
-// name: syntaxHighlighter
-// desc: retrieve global syntax highlighter
-//-----------------------------------------------------------------------------
-- ( IDEKit_LexParser * )syntaxHighlighter
-{
-    return syntax_highlighter;
-}
-
-//-----------------------------------------------------------------------------
-// name: syntaxHighlighter
-// desc: retrieve global syntax highlighter
+// name: updateSyntaxHighlighting
+// desc: update syntax highlighting with new class names
 //-----------------------------------------------------------------------------
 - (void)updateSyntaxHighlighting
 {

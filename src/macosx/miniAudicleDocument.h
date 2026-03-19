@@ -36,7 +36,6 @@ U.S.A.
 #import "mADocumentExporter.h"
 
 class miniAudicle;
-@class NumberedTextView;
 @class mADocumentViewController;
 @class mAMultiDocWindowController;
 @class UKFSEventsWatcher;

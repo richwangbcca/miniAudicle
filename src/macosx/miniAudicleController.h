@@ -40,7 +40,6 @@ class miniAudicle;
 @class miniAudicleVMMonitor;
 @class miniAudicleConsoleMonitor;
 @class miniAudiclePreferencesController;
-@class IDEKit_LexParser;
 @class miniAudicleDocument;
 @class mARecordSessionController;
 @class mAMultiDocWindowController;
@@ -73,7 +72,6 @@ extern NSString * const mAVirtualMachineDidTurnOffNotification;
     NSTextField * remote_vm_host;
     NSTextField * remote_vm_port;
     
-    IDEKit_LexParser * syntax_highlighter;
     NSMutableDictionary * class_names;
     
     BOOL vm_on;
@@ -117,7 +115,6 @@ extern NSString * const mAVirtualMachineDidTurnOffNotification;
                               inTab:(BOOL)inTab;
 
 // syntax highlighting
-- (IDEKit_LexParser *)syntaxHighlighter;
 - (void)updateSyntaxHighlighting;
 - (NSColor *)colorForIdentifier: (NSString *)ident;
 

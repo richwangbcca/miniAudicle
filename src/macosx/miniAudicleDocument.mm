@@ -33,7 +33,6 @@
 
 #import "miniAudicleDocument.h"
 #import "miniAudicleController.h"
-#import "NumberedTextView.h"
 #import "miniAudiclePreferencesController.h"
 #import "miniAudicle.h"
 #import "chuck_parse.h"

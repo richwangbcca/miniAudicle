@@ -156,7 +156,6 @@
 		092C95E81FCE826F005114AE /* chuck_audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 092C95A21FCE7992005114AE /* chuck_audio.cpp */; };
 		09307E1A18DE76D0004AB346 /* mAKeyboardAccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09307E1818DE76D0004AB346 /* mAKeyboardAccessoryViewController.m */; };
 		09307E1B18DE76D0004AB346 /* mAKeyboardAccessoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09307E1918DE76D0004AB346 /* mAKeyboardAccessoryViewController.xib */; };
-		09307E1F18DFB5E7004AB346 /* mASyntaxHighlighter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 09307E1E18DFB5E7004AB346 /* mASyntaxHighlighter.mm */; };
 		09307E2118DFEE57004AB346 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09307E2018DFEE57004AB346 /* Images.xcassets */; };
 		09307E2418DFF892004AB346 /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = 095B59710BC6D0F900E8759D /* error.png */; };
 		09307E2718E0BEC2004AB346 /* NSString+NSString_Lines.m in Sources */ = {isa = PBXBuildFile; fileRef = 09307E2618E0BEC2004AB346 /* NSString+NSString_Lines.m */; };
@@ -238,7 +237,6 @@
 		09A14A1219B9AD5E00D28255 /* UIColor+iOS7BlueColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A14A1119B9AD5E00D28255 /* UIColor+iOS7BlueColor.m */; };
 		09A24ED31FE23A1B00FC9BB5 /* chuck_console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 092C95A41FCE7992005114AE /* chuck_console.cpp */; };
 		09A40B800A9A54DA007604EA /* chuck.y in Sources */ = {isa = PBXBuildFile; fileRef = 09A40B360A9A54DA007604EA /* chuck.y */; };
-		09A40BBE0A9A55EC007604EA /* mASyntaxHighlighter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 09A40BAC0A9A55EC007604EA /* mASyntaxHighlighter.mm */; };
 		09A40BBF0A9A55EC007604EA /* miniAudicle_ui_elements.mm in Sources */ = {isa = PBXBuildFile; fileRef = 09A40BAD0A9A55EC007604EA /* miniAudicle_ui_elements.mm */; };
 		09A40BC00A9A55EC007604EA /* miniAudicleConsoleMonitor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 09A40BAF0A9A55EC007604EA /* miniAudicleConsoleMonitor.mm */; };
 		09A40BC10A9A55EC007604EA /* miniAudicleController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 09A40BB10A9A55EC007604EA /* miniAudicleController.mm */; };
@@ -247,7 +245,6 @@
 		09A40BC40A9A55EC007604EA /* miniAudicleShellController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 09A40BB70A9A55EC007604EA /* miniAudicleShellController.mm */; };
 		09A40BC50A9A55EC007604EA /* miniAudicleShellTextView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 09A40BB90A9A55EC007604EA /* miniAudicleShellTextView.mm */; };
 		09A40BC60A9A55EC007604EA /* miniAudicleVMMonitor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 09A40BBB0A9A55EC007604EA /* miniAudicleVMMonitor.mm */; };
-		09A40BC70A9A55EC007604EA /* NumberedTextView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 09A40BBD0A9A55EC007604EA /* NumberedTextView.mm */; };
 		09A40BD00A9A5662007604EA /* miniAudicle_import.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09A40BC80A9A5662007604EA /* miniAudicle_import.cpp */; };
 		09A40BD10A9A5662007604EA /* miniAudicle_shell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09A40BCA0A9A5662007604EA /* miniAudicle_shell.cpp */; };
 		09A40BD20A9A5662007604EA /* miniAudicle_ui_elements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09A40BCC0A9A5662007604EA /* miniAudicle_ui_elements.cpp */; };
@@ -551,8 +548,6 @@
 		09307E1718DE76D0004AB346 /* mAKeyboardAccessoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mAKeyboardAccessoryViewController.h; sourceTree = "<group>"; };
 		09307E1818DE76D0004AB346 /* mAKeyboardAccessoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mAKeyboardAccessoryViewController.m; sourceTree = "<group>"; };
 		09307E1918DE76D0004AB346 /* mAKeyboardAccessoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mAKeyboardAccessoryViewController.xib; sourceTree = "<group>"; };
-		09307E1D18DFB5E7004AB346 /* mASyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mASyntaxHighlighter.h; sourceTree = "<group>"; };
-		09307E1E18DFB5E7004AB346 /* mASyntaxHighlighter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mASyntaxHighlighter.mm; sourceTree = "<group>"; };
 		09307E2018DFEE57004AB346 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		09307E2518E0BEC2004AB346 /* NSString+NSString_Lines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSString_Lines.h"; sourceTree = "<group>"; };
 		09307E2618E0BEC2004AB346 /* NSString+NSString_Lines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSString_Lines.m"; sourceTree = "<group>"; };
@@ -660,8 +655,6 @@
 		09A1E6170CBA1AEC001FAD6F /* makefile.win32 */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; fileEncoding = 30; path = makefile.win32; sourceTree = SOURCE_ROOT; };
 		09A40B350A9A54DA007604EA /* chuck.lex */ = {isa = PBXFileReference; explicitFileType = sourcecode.lex; fileEncoding = 30; languageSpecificationIdentifier = c; path = chuck.lex; sourceTree = "<group>"; };
 		09A40B360A9A54DA007604EA /* chuck.y */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.yacc; path = chuck.y; sourceTree = "<group>"; };
-		09A40BAB0A9A55EC007604EA /* mASyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mASyntaxHighlighter.h; path = macosx/mASyntaxHighlighter.h; sourceTree = SOURCE_ROOT; };
-		09A40BAC0A9A55EC007604EA /* mASyntaxHighlighter.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; name = mASyntaxHighlighter.mm; path = macosx/mASyntaxHighlighter.mm; sourceTree = SOURCE_ROOT; };
 		09A40BAD0A9A55EC007604EA /* miniAudicle_ui_elements.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; name = miniAudicle_ui_elements.mm; path = macosx/miniAudicle_ui_elements.mm; sourceTree = SOURCE_ROOT; };
 		09A40BAE0A9A55EC007604EA /* miniAudicleConsoleMonitor.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = miniAudicleConsoleMonitor.h; path = macosx/miniAudicleConsoleMonitor.h; sourceTree = SOURCE_ROOT; };
 		09A40BAF0A9A55EC007604EA /* miniAudicleConsoleMonitor.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; name = miniAudicleConsoleMonitor.mm; path = macosx/miniAudicleConsoleMonitor.mm; sourceTree = SOURCE_ROOT; };
@@ -677,8 +670,6 @@
 		09A40BB90A9A55EC007604EA /* miniAudicleShellTextView.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; name = miniAudicleShellTextView.mm; path = macosx/miniAudicleShellTextView.mm; sourceTree = SOURCE_ROOT; };
 		09A40BBA0A9A55EC007604EA /* miniAudicleVMMonitor.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = miniAudicleVMMonitor.h; path = macosx/miniAudicleVMMonitor.h; sourceTree = SOURCE_ROOT; };
 		09A40BBB0A9A55EC007604EA /* miniAudicleVMMonitor.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; name = miniAudicleVMMonitor.mm; path = macosx/miniAudicleVMMonitor.mm; sourceTree = SOURCE_ROOT; };
-		09A40BBC0A9A55EC007604EA /* NumberedTextView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = NumberedTextView.h; path = macosx/NumberedTextView.h; sourceTree = SOURCE_ROOT; };
-		09A40BBD0A9A55EC007604EA /* NumberedTextView.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; name = NumberedTextView.mm; path = macosx/NumberedTextView.mm; sourceTree = SOURCE_ROOT; };
 		09A40BC80A9A5662007604EA /* miniAudicle_import.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = miniAudicle_import.cpp; sourceTree = SOURCE_ROOT; };
 		09A40BC90A9A5662007604EA /* miniAudicle_import.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = miniAudicle_import.h; sourceTree = SOURCE_ROOT; };
 		09A40BCA0A9A5662007604EA /* miniAudicle_shell.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = miniAudicle_shell.cpp; sourceTree = SOURCE_ROOT; };
@@ -905,15 +896,11 @@
 				09A40BB30A9A55EC007604EA /* miniAudicleDocument.mm */,
 				09A40BB00A9A55EC007604EA /* miniAudicleController.h */,
 				09A40BB10A9A55EC007604EA /* miniAudicleController.mm */,
-				09A40BBC0A9A55EC007604EA /* NumberedTextView.h */,
-				09A40BBD0A9A55EC007604EA /* NumberedTextView.mm */,
 				09F37B060BC075AC005931F6 /* mABrowserController.h */,
 				09F37B050BC075AC005931F6 /* mABrowserController.mm */,
 				096FAB840B56D56B00125FE2 /* mAConsoleMonitorView.h */,
 				096FAB850B56D56B00125FE2 /* mAConsoleMonitorView.mm */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
-				09A40BAB0A9A55EC007604EA /* mASyntaxHighlighter.h */,
-				09A40BAC0A9A55EC007604EA /* mASyntaxHighlighter.mm */,
 				09A40BAD0A9A55EC007604EA /* miniAudicle_ui_elements.mm */,
 				09A40BAE0A9A55EC007604EA /* miniAudicleConsoleMonitor.h */,
 				09A40BAF0A9A55EC007604EA /* miniAudicleConsoleMonitor.mm */,
@@ -1341,8 +1328,6 @@
 				09307E1718DE76D0004AB346 /* mAKeyboardAccessoryViewController.h */,
 				09307E1818DE76D0004AB346 /* mAKeyboardAccessoryViewController.m */,
 				09307E1918DE76D0004AB346 /* mAKeyboardAccessoryViewController.xib */,
-				09307E1D18DFB5E7004AB346 /* mASyntaxHighlighter.h */,
-				09307E1E18DFB5E7004AB346 /* mASyntaxHighlighter.mm */,
 			);
 			name = editor;
 			sourceTree = "<group>";
@@ -1912,7 +1897,6 @@
 				09A14A1219B9AD5E00D28255 /* UIColor+iOS7BlueColor.m in Sources */,
 				09B596C119B0517D0091D45F /* NSString+STLString.mm in Sources */,
 				09F09E4518E36DBC0050D963 /* mAScriptPlayer.mm in Sources */,
-				09307E1F18DFB5E7004AB346 /* mASyntaxHighlighter.mm in Sources */,
 				09AB222F196FC4670037AF73 /* mADocumentManager.m in Sources */,
 				09F09E3718E0F5AE0050D963 /* mAKeyboardButton.m in Sources */,
 				093E266F14A12240008694BC /* miniAudicle.cpp in Sources */,
@@ -2015,7 +1999,6 @@
 				09056C231FCE8FF9004A2BD4 /* rtmidi.cpp in Sources */,
 				092B8E9D1BC206C8000033B3 /* miniAudicle_version.cpp in Sources */,
 				09056C1C1FCE8FF9004A2BD4 /* chuck_table.cpp in Sources */,
-				09A40BBE0A9A55EC007604EA /* mASyntaxHighlighter.mm in Sources */,
 				09A40BBF0A9A55EC007604EA /* miniAudicle_ui_elements.mm in Sources */,
 				09A40BC00A9A55EC007604EA /* miniAudicleConsoleMonitor.mm in Sources */,
 				09A40BC10A9A55EC007604EA /* miniAudicleController.mm in Sources */,
@@ -2029,7 +2012,6 @@
 				092C95CF1FCE7E24005114AE /* message.c in Sources */,
 				09056C2E1FCE8FF9004A2BD4 /* ulib_std.cpp in Sources */,
 				09056C191FCE8FF9004A2BD4 /* chuck_shell.cpp in Sources */,
-				09A40BC70A9A55EC007604EA /* NumberedTextView.mm in Sources */,
 				09056C291FCE8FF9004A2BD4 /* ugen_xxx.cpp in Sources */,
 				092C95B11FCE7992005114AE /* RtAudio.cpp in Sources */,
 				09A40BD00A9A5662007604EA /* miniAudicle_import.cpp in Sources */,
