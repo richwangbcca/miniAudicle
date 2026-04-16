@@ -1,4 +1,5 @@
 #import "mAScintillaView.h"
+#import "mASyntaxHighlighter.h"
 #import "Scintilla.h"
 #import "SciLexer.h"
 
@@ -368,6 +369,8 @@ static const char* const s_keywords4 =
 
     NSColor *bg = color(@"Background") ?: [NSColor whiteColor];
     [_sci message:SCI_STYLESETBACK wParam:STYLE_DEFAULT lParam:sciColor(bg)];
+    _sci.scrollView.backgroundColor = bg;
+    _sci.scrollView.contentView.backgroundColor = bg;
 
     NSColor *fg = color(@"NormalText") ?: [NSColor blackColor];
     [_sci message:SCI_STYLESETFORE wParam:STYLE_DEFAULT lParam:sciColor(fg)];
