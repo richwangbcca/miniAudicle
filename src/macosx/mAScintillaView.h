@@ -1,10 +1,11 @@
 #import <Cocoa/Cocoa.h>
-#import "ScintillaView.h"
+#import "external/scintilla/cocoa/ScintillaView.h"
 
 @interface mAScintillaView : NSView <ScintillaNotificationProtocol>
 
 - (void)enableLineNumbers:(BOOL)enable;
 - (void)reloadUserDefaults;
+- (void)toggleLineComment;
 
 @property (nonatomic, copy) NSString *content;
 

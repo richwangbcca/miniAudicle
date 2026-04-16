@@ -281,6 +281,53 @@ static const char* const s_keywords4 =
     return _sci;
 }
 
+- (void)toggleLineComment {
+    sptr_t selStart = [_sci message:SCI_GETSELECTIONSTART];
+    sptr_t selEnd   = [_sci message:SCI_GETSELECTIONEND];
+
+    NSInteger firstLine = [_sci message:SCI_LINEFROMPOSITION wParam:(uptr_t)selStart];
+    NSInteger lastLine  = [_sci message:SCI_LINEFROMPOSITION wParam:(uptr_t)selEnd];
+
+    // Don't include a line if the selection ends exactly at its start (col 0)
+    if (lastLine > firstLine) {
+        sptr_t lastLineStart = [_sci message:SCI_POSITIONFROMLINE wParam:(uptr_t)lastLine];
+        if (selEnd == lastLineStart) lastLine--;
+    }
+
+    // Check if all non-empty lines are already commented
+    BOOL allCommented = YES;
+    for (NSInteger line = firstLine; line <= lastLine; line++) {
+        sptr_t indentPos = [_sci message:SCI_GETLINEINDENTPOSITION wParam:(uptr_t)line];
+        sptr_t lineEnd   = [_sci message:SCI_GETLINEENDPOSITION    wParam:(uptr_t)line];
+        if (indentPos >= lineEnd) continue; // skip whitespace-only / empty lines
+        int c1 = (int)[_sci message:SCI_GETCHARAT wParam:(uptr_t)indentPos];
+        int c2 = (int)[_sci message:SCI_GETCHARAT wParam:(uptr_t)(indentPos + 1)];
+        if (!(c1 == '/' && c2 == '/')) { allCommented = NO; break; }
+    }
+
+    [_sci message:SCI_BEGINUNDOACTION];
+    for (NSInteger line = firstLine; line <= lastLine; line++) {
+        sptr_t indentPos = [_sci message:SCI_GETLINEINDENTPOSITION wParam:(uptr_t)line];
+        sptr_t lineEnd   = [_sci message:SCI_GETLINEENDPOSITION    wParam:(uptr_t)line];
+        if (indentPos >= lineEnd) continue; // skip empty lines
+        if (allCommented)
+            [_sci message:SCI_DELETERANGE wParam:(uptr_t)indentPos lParam:2];
+        else
+            [_sci message:SCI_INSERTTEXT wParam:(uptr_t)indentPos lParam:(sptr_t)"//"];
+    }
+    [_sci message:SCI_ENDUNDOACTION];
+}
+
+- (BOOL)performKeyEquivalent:(NSEvent *)event {
+    NSEventModifierFlags flags = event.modifierFlags & NSEventModifierFlagDeviceIndependentFlagsMask;
+    if (flags == NSEventModifierFlagCommand &&
+        [event.charactersIgnoringModifiers isEqualToString:@"/"]) {
+        [self toggleLineComment];
+        return YES;
+    }
+    return [super performKeyEquivalent:event];
+}
+
 // ---------------------------------------------------------------------------
 #pragma mark - Color/font preferences
 // ---------------------------------------------------------------------------
