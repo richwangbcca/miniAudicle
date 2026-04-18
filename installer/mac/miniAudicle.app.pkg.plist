@@ -19,6 +19,12 @@
 				<key>RootRelativeBundlePath</key>
 				<string>Applications/miniAudicle.app/Contents/Frameworks/PSMTabBarControl.framework</string>
 			</dict>
+			<dict>
+				<key>BundleOverwriteAction</key>
+				<string>upgrade</string>
+				<key>RootRelativeBundlePath</key>
+				<string>Applications/miniAudicle.app/Contents/Frameworks/Scintilla.framework</string>
+			</dict>
 		</array>
 		<key>RootRelativeBundlePath</key>
 		<string>Applications/miniAudicle.app</string>
