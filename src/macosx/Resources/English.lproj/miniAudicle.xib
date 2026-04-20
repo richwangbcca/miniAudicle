@@ -487,6 +487,11 @@ CA
                                     <action selector="toggleVM:" target="331" id="338"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="ChucK Manager of Packages" keyEquivalent="p" id="5001">
+                                <connections>
+                                    <action selector="showChuMP:" target="-1" id="5002"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Log Level" id="459">
                                 <menu key="submenu" title="Log Level" id="460">
                                     <items>

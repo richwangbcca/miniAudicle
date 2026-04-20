@@ -35,23 +35,29 @@ endif
 BUNDLE_FRAMEWORKS=PSMTabBarControl Scintilla
 BUNDLE_FRAMEWORKS_DIR=$(OSX_DIR)/Frameworks
 
+CHUMP_DIR=chump
+CHUMP_INCLUDES=-I$(CHUMP_DIR)/include \
+    -I$(CHUMP_DIR)/subprojects/single_include \
+    -Ichugins/chuck/include
+
 INCLUDES=-I$(CHUCK_SRC_DIR)/core -I$(CHUCK_SRC_DIR)/host -I$(CHUCK_SRC_DIR)/host/RtAudio \
     -I$(OSX_DIR) -I$(OSX_DIR)/UliKit -I. -F$(BUNDLE_FRAMEWORKS_DIR) \
     -I$(OSX_DIR)/external/scintilla/include \
     -I$(OSX_DIR)/external/scintilla/cocoa \
     -I$(OSX_DIR)/external/lexilla/include \
-    -I$(OSX_DIR)/external/lexilla/lexlib
+    -I$(OSX_DIR)/external/lexilla/lexlib \
+    $(CHUMP_INCLUDES)
 CFLAGS+=-D__MACOSX_CORE__ -c -DGCC_FAST_OBJC_DISPATCH $(INCLUDES) \
-    -mmacosx-version-min=10.9 $(ISYSROOT) -DENV_MA_VERSION="\"$(VERSION)\""
+    -mmacosx-version-min=10.15 $(ISYSROOT) -DENV_MA_VERSION="\"$(VERSION)\""
 CXXSTD=-std=c++17
 
 FRAMEWORKS=Cocoa CoreAudio CoreMIDI CoreFoundation Carbon IOKit Security AVFoundation QuartzCore
 # linker assumes CXX -- e.g., g++
 LIBS=$(addprefix -framework ,$(FRAMEWORKS)) \
-    $(LINK_EXTRAS) -lm
+    $(LINK_EXTRAS) -lm -lcurl
 # if linking using CC -- e.g., gcc -- add -lc++
 # LIBS+= -lc++
-LDFLAGS=$(LIBS) -mmacosx-version-min=10.9 $(ISYSROOT)
+LDFLAGS=$(LIBS) -mmacosx-version-min=10.15 $(ISYSROOT)
 LDFLAGS_MA=-F$(BUNDLE_FRAMEWORKS_DIR) -framework PSMTabBarControl -framework Scintilla -rpath "@executable_path/../Frameworks"
 
 ARCHOPTS=$(addprefix -arch ,$(ARCHS))
@@ -225,14 +231,25 @@ OBJCXXSRCS+= $(OSX_DIR)/miniAudicleController.mm \
 	$(OSX_DIR)/mARecordSessionController.mm \
 	$(OSX_DIR)/NSString+STLString.mm \
 	$(OSX_DIR)/mAExampleBrowser.mm \
-	$(OSX_DIR)/mADocumentExporter.mm
+	$(OSX_DIR)/mADocumentExporter.mm \
+	$(OSX_DIR)/mAChuMPWindowController.mm
 
 COBJS=$(CSRCS:.c=.o)
 CXXOBJS=$(CXXSRCS:.cpp=.o)
 OBJCOBJS=$(OBJCSRCS:.m=.o)
 OBJCXXOBJS=$(OBJCXXSRCS:.mm=.o)
 LEXILLA_CXXOBJS=$(LEXILLA_CXXSRCS:.cxx=.o)
-OBJS=$(COBJS) $(CXXOBJS) $(OBJCOBJS) $(OBJCXXOBJS) $(LEXILLA_CXXOBJS)
+
+CHUMP_CXXSRCS= \
+    $(CHUMP_DIR)/src/chuck_version.cpp \
+    $(CHUMP_DIR)/src/fetch.cpp \
+    $(CHUMP_DIR)/src/manager.cpp \
+    $(CHUMP_DIR)/src/package_list.cpp \
+    $(CHUMP_DIR)/src/package.cpp \
+    $(OSX_DIR)/chump_util_macos.cpp
+
+CHUMP_CXXOBJS=$(CHUMP_CXXSRCS:.cpp=.o)
+OBJS=$(COBJS) $(CXXOBJS) $(OBJCOBJS) $(OBJCXXOBJS) $(LEXILLA_CXXOBJS) $(CHUMP_CXXOBJS)
 
 # example files
 CK_EXAMPLES_DIR=chuck/examples
@@ -257,7 +274,7 @@ BUNDLE_DATA:=$(addprefix $(BIN_DIR)/miniAudicle.app/Contents/,$(BUNDLE_DATA))
 BUNDLE_FRAMEWORKS_IN_BUNDLE=$(addsuffix .framework,$(addprefix $(BIN_DIR)/miniAudicle.app/Contents/Frameworks/,$(BUNDLE_FRAMEWORKS)))
 
 NIBS_BASE=miniAudicle mADocumentView mADocumentWindow mARecordSession \
-    mAExportProgress mAExportAs mAExampleBrowser
+    mAExportProgress mAExportAs mAExampleBrowser mAChuMP
 XIBS=$(addprefix $(OSX_DIR)/Resources/$(LANGUAGE).lproj/,$(addsuffix .xib,$(NIBS_BASE)))
 NIBS=$(addprefix $(BIN_DIR)/miniAudicle.app/Contents/Resources/$(LANGUAGE).lproj/,$(addsuffix .nib,$(NIBS_BASE)) InfoPlist.strings)
 
@@ -383,10 +400,12 @@ $(OBJCXXOBJS): %.o: %.mm
 	$(CXX) $(CFLAGS) $(CXXSTD) $(ARCHOPTS) -c $< -o $@
 	@$(CXX) -MM $(CFLAGSDEPEND) $< > $*.d
 
+$(CHUMP_CXXOBJS): %.o: %.cpp
+	$(CXX) $(CFLAGS) $(CXXSTD) $(ARCHOPTS) -c $< -o $@
 
 .PHONY: clean
 clean:
-	rm -rf $(OBJS) $(OBJS:.o=.d) $(CHUCK_OBJS) $(CHUCK_OBJS:.o=.d) \
+	rm -rf $(OBJS) $(OBJS:.o=.d) $(CHUMP_CXXOBJS) $(CHUCK_OBJS) $(CHUCK_OBJS:.o=.d) \
         $(addprefix $(CHUCK_SRC_DIR)/,chuck.tab.h chuck.tab.c chuck.yy.c) \
         $(CHUCK_BIN_OBJS) $(CHUCK_BIN_OBJS:.o=.d) \
         $(BIN_DIR)/miniAudicle.app $(DIST_DIR).dmg \

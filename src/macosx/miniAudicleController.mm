@@ -42,6 +42,7 @@ U.S.A.
 #import "mARecordSessionController.h"
 #import "mAMultiDocWindowController.h"
 #import "mAExampleBrowser.h"
+#import "mAChuMPWindowController.h"
 #import "chuck.h"
 
 #import <AVFoundation/AVFoundation.h>
@@ -59,6 +60,7 @@ NSString * const mAChuginExtension = @"chug";
 @interface miniAudicleController ()
 
 @property (nonatomic, retain) mAExampleBrowser * exampleBrowser;
+@property (nonatomic, retain) mAChuMPWindowController * chuMPWindowController;
 
 - (void)adjustChucKMenuItems;
 - (void)applicationWillTerminate:(NSNotification *)n;
@@ -72,6 +74,7 @@ NSString * const mAChuginExtension = @"chug";
 @implementation miniAudicleController
 
 @synthesize exampleBrowser = _exampleBrowser;
+@synthesize chuMPWindowController = _chuMPWindowController;
 
 //-----------------------------------------------------------------------------
 // name: init
@@ -99,6 +102,7 @@ NSString * const mAChuginExtension = @"chug";
         m_recordSessionController.controller = self;
         
         self.exampleBrowser = [[[mAExampleBrowser alloc] initWithWindowNibName:@"mAExampleBrowser"] autorelease];
+        self.chuMPWindowController = [[[mAChuMPWindowController alloc] init] autorelease];
         
         _windowControllers = [NSMutableArray new];
         
@@ -1080,6 +1084,11 @@ const static size_t num_default_tile_dimensions = sizeof( default_tile_dimension
 - (IBAction)openExample:(id)sender
 {
     [[self.exampleBrowser window] makeKeyAndOrderFront:sender];
+}
+
+- (IBAction)showChuMP:(id)sender
+{
+    [[self.chuMPWindowController window] makeKeyAndOrderFront:sender];
 }
 
 
